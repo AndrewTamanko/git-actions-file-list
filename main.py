@@ -2,7 +2,7 @@ import os
 import sys
 
 
-def set_action_output(name: str, value: str):
+def set_action_output(name: str, value):
     with open(os.environ["GITHUB_OUTPUT"], "a") as myfile:
         myfile.write(f"{name}={value}\n")
 
