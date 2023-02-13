@@ -1,10 +1,6 @@
 import os
 import sys
-
-
-def set_action_output(name: str, value):
-    with open(os.environ["GITHUB_OUTPUT"], "a") as myfile:
-        myfile.write(f"{name}=" + value + "\n")
+import json
 
 def main():
     path = os.environ["INPUT_PATH"]
@@ -19,9 +15,13 @@ def main():
                 paths = paths + root + '/' + str(file) + ' '
                 path_count = path_count + 1
                 filenames.append(str(file))
-    set_action_output('path_count', path_count)
-    set_action_output('paths', paths)
-    set_action_output('filenames', filenames)
+                
+    j = {}
+    j['path_count'] = path_count
+    j['paths'] = paths
+    j['filenames'] = filenames
+    with open(os.environ["GITHUB_OUTPUT"], "w") as myfile:
+        myfile.write(json.dumps(j))
     print(paths)
 
     sys.exit(0)
