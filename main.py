@@ -4,7 +4,7 @@ import sys
 
 def set_action_output(name: str, value):
     with open(os.environ["GITHUB_OUTPUT"], "a") as myfile:
-        myfile.write(f"{name}={value}\n")
+        myfile.write(f"{name}=" + value + "\n")
 
 def main():
     path = os.environ["INPUT_PATH"]
