@@ -21,7 +21,7 @@ def main():
     j['paths'] = paths
     j['filenames'] = filenames
     with open(os.environ["GITHUB_OUTPUT"], "w") as myfile:
-        myfile.write(json.dumps(j))
+        myfile.write(j)
     print(paths)
 
     sys.exit(0)
